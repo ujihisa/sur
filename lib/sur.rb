@@ -9,7 +9,15 @@ module Sur
     process if /^y$/i =~ gets
   end
 
-  def process
-    # TODO: Implement it
+  class << self
+    private
+
+    def process
+      # TODO: Implement it
+    end
+
+    def the_name
+      $0
+    end
   end
 end
