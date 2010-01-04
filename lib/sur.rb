@@ -23,8 +23,7 @@ module Sur
     end
 
     def sudo_is_needed
-      # TODO: Implement it
-      true
+      /#{`whoami`.strip}/ !~ $0
     end
 
     def the_name

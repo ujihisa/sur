@@ -23,7 +23,7 @@ describe 'Sur.process' do
     exec_log = []
     Kernel.method(:define_method).call(:exec) {|*o| exec_log << o }
     Sur.send(:process)
-    exec_log.should == [['sudo', 'gem', 'update', 'spec']]
+    exec_log.should == [['gem', 'update', 'spec']]
   end
 end
 
@@ -33,7 +33,15 @@ describe 'Sur.sudo_is_needed' do
     lambda { Sur.sudo_is_needed }.should raise_error(NoMethodError)
   end
 
-  it 'a'
+  it 'is true when the gem executable file is running under the global area' do
+    # This spec assumes you've already installed `dummygem` under your home directory.
+    pending
+  end
+
+  it 'is false when the gem executable file is running under the user area' do
+    # This spec assumes you've already installed `dummygem` under your home directory.
+    `dummygem`.strip.should == 'false'
+  end
 end
 describe 'Sur.the_name' do
   it 'is private' do
