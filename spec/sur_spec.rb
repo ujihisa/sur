@@ -20,10 +20,21 @@ describe 'Sur.process' do
   end
 
   it 'updates the application' do
-    pending
+    exec_log = []
+    Kernel.method(:define_method).call(:exec) {|*o| exec_log << o }
+    Sur.send(:process)
+    exec_log.should == [['sudo', 'gem', 'update', 'spec']]
   end
 end
 
+
+describe 'Sur.sudo_is_needed' do
+  it 'is private' do
+    lambda { Sur.sudo_is_needed }.should raise_error(NoMethodError)
+  end
+
+  it 'a'
+end
 describe 'Sur.the_name' do
   it 'is private' do
     lambda { Sur.the_name }.should raise_error(NoMethodError)
