@@ -17,7 +17,7 @@ module Sur
     end
 
     def the_name
-      $0
+      File.basename($0).sub(/\.rb$/, '')
     end
   end
 end

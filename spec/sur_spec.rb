@@ -1,5 +1,6 @@
 require 'stringio'
-$: << File.expand_path(__FILE__) + '/../lib'
+require 'tempfile'
+$: << File.dirname(File.expand_path(__FILE__)) + '/../lib'
 require 'sur'
 
 describe 'Sur.ask' do
@@ -31,5 +32,14 @@ describe 'Sur.the_name' do
   it 'returns the application which has required Sur' do
     # In this case, the application is of course RSpec
     Sur.send(:the_name).should match(/spec/)
+  end
+
+  it '...really?' do
+    t = File.dirname(Tempfile.new('a').path) + '/termtter.rb'
+    File.open(t, 'w') {|io| io.puts <<-"E" }
+    require '#{File.dirname(File.expand_path(__FILE__)) + '/../lib/sur'}'
+    puts Sur.send(:the_name)
+    E
+    `ruby #{t}`.should == "termtter\n"
   end
 end
