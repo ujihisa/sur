@@ -14,7 +14,12 @@ Sur provides the self-updating system for arbitrary end-user softwares hosted as
 Advanced usage:
 
     Sur.ask_as 'termtter'
-    Sur.ask 'termtter', :without_reboot
+    Sur.ask :without_reboot
+
+Usually `Sur.ask` is ignored when the software isn't running as a gem,
+but `:always` option can force asking.
+
+    Sur.ask :always
 
 ## Author
 
