@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+# This file doesn't requires dummygem.rb library intentionally.
+require 'rubygems'
+require 'sur'
+puts Sur.send(:sudo_is_needed)
